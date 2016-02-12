@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Datable Demo</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <style>
+        .navbar-brand {
+            padding:0 15px;
+        }
+        #theForm {
+            padding:10px;
+        }
+        #theForm input {
+            margin-bottom:15px;
+            max-width:150px;
+        }
+        fieldset {
+            padding-bottom:30px;
+        }
+        .row {
+            margin-bottom:50px;
+        }
+    </style>    
+  
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.gif" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#demo">Demo</a>
+                    </li>
+                    <li>
+                        <a href="#install">Install</a>
+                    </li>
+                    <li>
+                        <a href="#download">Download</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <hr />
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Datable</h1><a name="demo"></a>
+                <p>A plugin to properly format dates in inputs.</p>
+            </div>
+            
+            <hr />
+        </div>
+        
+        
+        <div class="row">    
+            
+            <div class="col-lg-12">
+                <h3>Demo</h3>
+                
+                <form id="theForm">
+                    <fieldset id="month-year">
+                        <legend>Month & Year</legend>
+                         
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Standard (US)</label>
+                             <div class="controls">
+                                <input id="input1" type="text" class="form-control" data-datable="mmyyyy" />
+                             </div>
+                             <p><code>
+                                 &lt;input type="text" class="form-control" data-datable="mmyyyy" /&gt;
+                             </code></p>
+                         </div>      
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">2-digit (UK)</label>
+                             <div class="controls">
+                                <input id="input2" type="text" class="form-control" data-datable="yymm" />
+                             </div>
+                             <p><code>
+                                 &lt;input type="text" class="form-control" data-datable="yymm" /&gt;
+                             </code></p>
+                         </div>     
+                         
+                    </fieldset>    
+                    
+                    <fieldset id="full-date">
+                        <legend>Full Date</legend>
+                        
+                          <div class="col-lg-6 control-group">
+                             <label class="control-label">2-digit year (US)</label>
+                             <input id="input3" type="text" class="form-control" data-datable="mmddyy" />
+                             <p><code>
+                                 &lt;input type="text" class="form-control" data-datable="mmddyy" /&gt;
+                             </code></p>
+                         </div>  
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Standard (UK)</label>
+                             <input id="input4" type="text" class="form-control" data-datable="ddmmyyyy" />
+                             <p><code>
+                                 &lt;input type="text" class="form-control" data-datable="ddmmyyyy" /&gt;
+                             </code></p>
+                         </div> 
+                
+                    </fieldset>
+                
+                    <fieldset id="alternate">
+                        <legend>Alternate Seperators</legend>
+                         
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Standard (US) with spaced dash</label>
+                             <input id="input5" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider=" - "  />
+                             <p><code>
+                                 &lt;input type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider=" - "  /&gt;
+                             </code></p>
+                         </div>      
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Standard (UK) with dash</label>
+                             <input id="input6" type="text" class="form-control" data-datable="ddmmyyyy"  data-datable-divider="-"  />
+                             <p><code>
+                                 &lt;input type="text" class="form-control" data-datable="ddmmyyyy"  data-datable-divider="-"  /&gt;
+                             </code></p>                      
+                         </div>  
+
+                    </fieldset>    
+                
+               
+                
+                </form>
+                
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Install</h3><a name="install"></a>
+                <p>After downloading datable, just include the file right above the closing <code>&lt;body&gt;</code> tag.</p>
+                <p><code>&lt;script type="text/javascript" src="datable.min.js"&gt;&lt;/script&gt;</code></p>
+                <p>That's all!</p>
+                
+            </div>  
+        </div>
+         <div class="row">
+            <div class="col-lg-12">
+                <h3>Download</h3><a name="download"></a>
+                <p>Available on github!</p>
+            </div>  
+        </div>
+    </div>
+    <!-- /.container -->
+    <script type="text/javascript" src="datable.min.js"></script>
+
+</body>
+</html>
