@@ -17,8 +17,7 @@ $.fn.datable = function() {
             vrr = val.match(/.{2}/g),
             nrr = [];
         var pd = $(this).attr('data-datable-divider');
-        var div = (pd) ? pd : " / ";   
-        // console.log(val);     
+        var div = (pd) ? pd : " / ";     
         $.each(vrr, function(i, el){
             if($.inArray(el, nrr) === -1) {
                 nrr.push(el); 
