@@ -1,11 +1,18 @@
-/* global $ */
+// datable.js by invot
+// version 0.1.2
 
+/* global $, jQuery */
+
+// polyfill for endsWith()
 if(!String.prototype.endsWith){String.prototype.endsWith=function(searchString,position){var subjectString=this.toString();if(typeof position!=='number'||!isFinite(position)||Math.floor(position)!==position||position>subjectString.length){position=subjectString.length;}
 position-=searchString.length;var lastIndex=subjectString.indexOf(searchString,position);return lastIndex!==-1&&lastIndex===position;};}
 
 function toObject(t,n){for(var r={},e=0;e<t.length;e++)r[t[e]]=n[e];return r;}
 
-$('input[data-datable]').each(function(i){
+(function ( $ ) {    
+$.fn.datable = function() {
+    
+    // CORE FUNCTIONALITY
     var val  = $(this).attr('data-datable'),
         vrr = val.match(/.{2}/g),
         nrr = [];
@@ -40,6 +47,7 @@ $('input[data-datable]').each(function(i){
         }
     });  
     
+    // BOOTSTRAP-FRIENDLY VALIDATION 
     $(this).on('blur', function(){
         var dat = $(this).val().split(div),
             arr = toObject(nrr,dat),
@@ -59,4 +67,6 @@ $('input[data-datable]').each(function(i){
             $(this).removeClass('error').closest('.control-group').removeClass('has-error');
         }
     }); 
-});
+};
+}( jQuery ));
+
