@@ -1,3 +1,6 @@
+// datable.js by invot
+// version 0.1.2
+
 /* global $, jQuery */
 
 // polyfill for endsWith()
