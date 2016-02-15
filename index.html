@@ -28,6 +28,12 @@
         .row {
             margin-bottom:50px;
         }
+        #fork {
+            position: fixed;
+            top:50px;
+            right:0;
+        }
+        
     </style>    
   
 </head>
@@ -60,6 +66,8 @@
         </div>
         <!-- /.container -->
     </nav>
+    
+    <div id="fork"><a href="https://github.com/invot/datable.js/"><img src="fork.png" /></a></div>
 
     <!-- Page Content -->
     <div class="container">
@@ -87,7 +95,7 @@
                                 <input id="input1" type="text" class="form-control" data-datable="mmyyyy" />
                              </div>
                              <p><code>
-                                 &lt;input type="text" class="form-control" data-datable="mmyyyy" /&gt;
+                                 &lt;input type="text" data-datable="mmyyyy" /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
@@ -96,7 +104,7 @@
                                 <input id="input2" type="text" class="form-control" data-datable="yymm" />
                              </div>
                              <p><code>
-                                 &lt;input type="text" class="form-control" data-datable="yymm" /&gt;
+                                 &lt;input type="text" data-datable="yymm" /&gt;
                              </code></p>
                          </div>     
                          
@@ -108,33 +116,33 @@
                              <label class="control-label">2-digit year (US)</label>
                              <input id="input3" type="text" class="form-control" data-datable="mmddyy" />
                              <p><code>
-                                 &lt;input type="text" class="form-control" data-datable="mmddyy" /&gt;
+                                 &lt;input type="text" data-datable="mmddyy" /&gt;
                              </code></p>
                          </div>  
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Standard (UK)</label>
                              <input id="input4" type="text" class="form-control" data-datable="ddmmyyyy" />
                              <p><code>
-                                 &lt;input type="text" class="form-control" data-datable="ddmmyyyy" /&gt;
+                                 &lt;input type="text" data-datable="ddmmyyyy" /&gt;
                              </code></p>
                          </div> 
                 
                     </fieldset>
                     <fieldset id="alternate">
-                        <legend>Alternate Seperators</legend>
+                        <legend>Alternate Dividers</legend>
                          
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Standard (US) with spaced dash</label>
                              <input id="input5" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider=" - "  />
                              <p><code>
-                                 &lt;input type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider=" - "  /&gt;
+                                 &lt;input type="text" data-datable="mmddyyyy"  data-datable-divider=" - "  /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Standard (UK) with dash</label>
                              <input id="input6" type="text" class="form-control" data-datable="ddmmyyyy"  data-datable-divider="-"  />
                              <p><code>
-                                 &lt;input type="text" class="form-control" data-datable="ddmmyyyy"  data-datable-divider="-"  /&gt;
+                                 &lt;input type="text" data-datable="ddmmyyyy"  data-datable-divider="-"  /&gt;
                              </code></p>                      
                          </div>  
 
@@ -146,9 +154,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3>Install</h3><a name="install"></a>
-                <p>After downloading datable, just include the file right above the closing <code>&lt;body&gt;</code> tag.</p>
-                <p><code>&lt;script type="text/javascript" src="datable.min.js"&gt;&lt;/script&gt;</code></p>
-                <p>That's all!</p>
+                <p>After downloading datable, just include the file right above the closing <code>&lt;body&gt;</code> tag and then initialize the function.</p>
+                <p><code>&lt;script type="text/javascript" src="datable.min.js"&gt;&lt;/script&gt;
+                    &lt;script&gt; $('input[data-datable]').datable();&lt;/script&gt;   
+                </code></p>
+                <p>That's all! Your options are handled through custom data attributes in each element.</p>
                 
             </div>  
         </div>
@@ -160,7 +170,10 @@
         </div>
     </div>
     <!-- /.container -->
-    <script type="text/javascript" src="datable.min.js"></script>
+    <script type="text/javascript" src="datable.js"></script>
+    <script>
+        $('input[data-datable]').datable();
+    </script>    
 
 </body>
 </html>
