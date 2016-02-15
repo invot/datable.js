@@ -1,1 +1,1 @@
-View the demo for instructions!
+View the <a href="http://invot.github.io/datable.js/">demo</a> for instructions!
