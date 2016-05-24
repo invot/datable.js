@@ -148,6 +148,42 @@
                          </div>  
 
                     </fieldset>    
+                    <fieldset id="era">
+                        <legend>Era Validation <small>(Does not support 2-digit year)</small></legend>
+                         
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Between today and a week ago</label>
+                             <input id="input7" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="0,0,-7"  />
+                             <p><code>
+                                 &lt;input type="text" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="0,0,-7"  /&gt;
+                             </code></p>
+                         </div>      
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Any day in the 1990s</label>
+                             <input id="input8" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="10,0,0" data-datable-start="1990,1,1"  />
+                             <p><code>
+                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-divider="/" data-datable-era="0,0,10" data-datable-start="1990,1,1" /&gt;
+                             </code></p>                      
+                         </div>  
+                         
+                         <p>&nbsp;</p>
+                         
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Within the next 30 days</label>
+                             <input id="input9" type="text" class="form-control" type="text" data-datable="yyyymmdd" data-datable-era="0,0,30"  />
+                             <p><code>
+                                 &lt;input type="text" data-datable="yyyymmdd" data-datable-era="0,0,30"  /&gt;
+                             </code></p>
+                         </div>      
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Any day in the 1980s</label>
+                             <input id="input10" type="text" class="form-control" data-datable="ddmmyyyy" data-datable-era="-10,0,0" data-datable-start="1989,12,31"  />
+                             <p><code>
+                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-era="-10,0,0" data-datable-start="1989,12,31" /&gt;
+                             </code></p>                      
+                         </div>  
+
+                    </fieldset>    
                 </form>
             </div>
             
