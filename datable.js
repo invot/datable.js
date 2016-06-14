@@ -42,7 +42,6 @@ $.fn.datable = function() {
             if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && $.inArray(e.keyCode, [46, 8, 9, 27, 13]) === -1) { e.preventDefault(); }
             if(e.keyCode == 8) {
                 if ( t.val().indexOf(div, t.val().length - div.length) != -1 ) {
-                    console.log('divider removed');
                     t.val( t.val().replace(new RegExp(div + '$'),'') );
                     e.preventDefault();
                 }
@@ -84,9 +83,7 @@ $.fn.datable = function() {
             }
 
             if ( isDate(arr.yyyy,arr.mm,arr.dd) ) {
-                console.log("it's a date!");
                 var tv = new Date(arr.yyyy, arr.mm, arr.dd);
-                console.log("tv:" + tv.toString());
                 if(era) { 
                     if (tv > st && tv >= er) {
                         err++;
