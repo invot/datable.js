@@ -1,25 +1,22 @@
 // datable.js by invot
-// version 0.2.0
+// version 0.2.1
 
 /* global $, jQuery */
 
-// polyfill for endsWith()
-if(!String.prototype.endsWith){String.prototype.endsWith=function(searchString,position){var subjectString=this.toString();if(typeof position!=='number'||!isFinite(position)||Math.floor(position)!==position||position>subjectString.length){position=subjectString.length;}
-position-=searchString.length;var lastIndex=subjectString.indexOf(searchString,position);return lastIndex!==-1&&lastIndex===position;};}
-
-function toObject(t,n){for(var r={},e=0;e<t.length;e++)r[t[e]]=n[e];return r;}
-
-function isDate(y, m, d) {
-    var a = new Date(y, m-1, d);
-    if (a.getFullYear() == y && a.getMonth() == m-1 && a.getDate() == d) { 
-    	return true; 
-    } else {
-    	return false;
-    }
-}
-
 (function ( $ ) {    
 $.fn.datable = function() {
+
+    function toObject(t,n){for(var r={},e=0;e<t.length;e++)r[t[e]]=n[e];return r;}
+
+    function isDate(y, m, d) {
+        var a = new Date(y, m-1, d);
+        if (a.getFullYear() == y && a.getMonth() == m-1 && a.getDate() == d) { 
+            return true; 
+        } else {
+            return false;
+        }
+    }
+
     $(this).each(function(){
         // CORE FUNCTIONALITY
         var t = $(this),
@@ -44,7 +41,7 @@ $.fn.datable = function() {
         t.on('keydown', function(e){
             if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && $.inArray(e.keyCode, [46, 8, 9, 27, 13]) === -1) { e.preventDefault(); }
             if(e.keyCode == 8) {
-                if ( t.val().endsWith(div) ) {
+                if ( t.val().indexOf(div, t.val().length - div.length) ) {
                     t.val( t.val().replace(new RegExp(div + '$'),'') );
                     e.preventDefault();
                 }
