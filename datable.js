@@ -1,5 +1,5 @@
 // datable.js by invot
-// version 0.2.2
+// version 0.3.0
 
 /* global $, jQuery */
 
@@ -15,6 +15,12 @@ $.fn.datable = function() {
         } else {
             return false;
         }
+    }
+
+    function charPos(sub,str){
+        var a=[],i=-1;
+        while((i=str.indexOf(sub,i+1)) >= 0) a.push(i);
+        return a;
     }
 
     $(this).each(function(){
@@ -39,26 +45,27 @@ $.fn.datable = function() {
         t.attr('maxlength', phld.length);
         t.attr('placeholder', phld).val();
         t.on('keydown', function(e){
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && $.inArray(e.keyCode, [46, 8, 9, 27, 13]) === -1) { e.preventDefault(); }
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && $.inArray(e.keyCode, [46, 8, 9, 27, 13, 37, 39]) === -1) { e.preventDefault(); }
             if(e.keyCode == 8) {
-                if ( t.val().indexOf(div, t.val().length - div.length) != -1 ) {
+                // if backspace delete divider in one keystroke
+                if ( t.val().indexOf(div, t.val().length - div.length) !== -1 ) {
                     t.val( t.val().replace(new RegExp(div + '$'),'') );
                     e.preventDefault();
                 }
-            } else {
+            } else if (e.keyCode > 36 && e.keyCode < 41) {
+                // do nothing when using arrow keys
+            } else {    
+                // default action :)
                 var s = this.selectionStart,
-                    l = t.val().length;
-                if ( l !== phld.length ) {
-                    if ( l == nrr[0].length ) {
-                        t.val(t.val()+div); 
-                    } else if ( l == (nrr[0].length + nrr[1].length + div.length) ) {
-                        t.val(t.val()+div); 
-                    }
-                }
-                if ( s !== l ) {
-                    t.val( t.val().substring(0,l) );
-                }
-            }
+                    l = t.val().length,
+                    ps = charPos(div,phld),
+                    sg = t.val().substring(s,parseInt(s)+div.length);
+                   if(sg == div){
+                        this.selectionStart = t.val().length;
+                   } else if($.inArray(s,ps) !== -1 && t.val().length < phld.length) {
+                       t.val(t.val()+div); 
+                   } 
+            } 
         });  
         if(era) {
             var st,er;
@@ -80,6 +87,10 @@ $.fn.datable = function() {
             }
             if (!arr.dd) {
                 arr.dd = 01;
+            }
+
+            if (!arr.mm) {
+                arr.mm = 01;
             }
 
             if ( isDate(arr.yyyy,arr.mm,arr.dd) ) {
