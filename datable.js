@@ -1,5 +1,5 @@
 // datable.js by invot
-// version 0.3.0
+// version 0.3.1
 
 /* global $, jQuery */
 
@@ -60,7 +60,8 @@ $.fn.datable = function() {
                     l = t.val().length,
                     ps = charPos(div,phld),
                     sg = t.val().substring(s,parseInt(s)+div.length);
-                   if(sg == div){
+                    console.log(ps);
+                   if(sg == div && !$.inArray(s,ps)){
                         this.selectionStart = t.val().length;
                    } else if($.inArray(s,ps) !== -1 && t.val().length < phld.length) {
                        t.val(t.val()+div); 
