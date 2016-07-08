@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- YOU'RE AWESOME! HAVE FUN USING DATABLE AND MAKE SURE TO STAR IT ON GITHUB! -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +33,7 @@
             position: fixed;
             top:50px;
             right:0;
+            z-index: 500;
         }
     </style>    
   
@@ -76,7 +78,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Datable</h1><a name="demo"></a>
-                <p>A plugin to properly format dates in inputs.</p>
+                <p>A lightweight, customizable, bootstraps-friendly jQuery plugin to properly format dates in inputs and verify that the date is valid.</p>
+
+                <div class="alert alert-danger" role="alert">Version 0.4.0 and beyond handles era validation differently than before. if your script has broken while updating datable.js, the examples below will explain how to impliment the new, and much better, era validation techniques.</div>
+
             </div>
             <hr />
         </div>
@@ -150,19 +155,26 @@
                     </fieldset>    
                     <fieldset id="era">
                         <legend>Era Validation <small>(Does not support 2-digit year)</small></legend>
+
+                        <div class="panel panel-default col-lg-12">
+                            <div class="panel-body">
+                                <p>Uses <code>data-datable-era</code> and <code>data-datable-era2</code> to create two points in time. If <code>data-datable-era2</code> is left blank then the second point in time is the current date.</p>
+                                <p>Two formats are accepted. If you want to select a percise date, enter in <code>"yyyy,mm,dd"</code>. If you want to enter in a point of time relative to the current date, enter in an array <code>"[yyyy,mm,dd]"</code>. The array can contain positive or negative numbers and be any length. The array MUST have all three values set.</p>
+                            </div>    
+                        </div>
                          
                          <div class="col-lg-6 control-group">
-                             <label class="control-label">Between today and a week ago</label>
-                             <input id="input7" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="0,0,-7"  />
+                             <label class="control-label">Between today and January 1, 2000</label>
+                             <input id="input7" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="2000,1,1"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="0,0,-7"  /&gt;
+                                 &lt;input type="text" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="2000,1,1"  /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Any day in the 1990s</label>
-                             <input id="input8" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="10,0,0" data-datable-start="1990,1,1"  />
+                             <input id="input8" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="1999,12,31" data-datable-era2="1990,1,1"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-divider="/" data-datable-era="10,0,0" data-datable-start="1990,1,1" /&gt;
+                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-divider="/" data-datable-era="1999,12,31" data-datable-era2="1990,1,1" /&gt;
                              </code></p>                      
                          </div>  
                          
@@ -170,16 +182,16 @@
                          
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Within the next 30 days</label>
-                             <input id="input9" type="text" class="form-control" type="text" data-datable="yyyymmdd" data-datable-era="0,0,30"  />
+                             <input id="input9" type="text" class="form-control" type="text" data-datable="yyyymmdd" data-datable-era="[0,0,30]"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="yyyymmdd" data-datable-era="0,0,30"  /&gt;
+                                 &lt;input type="text" data-datable="yyyymmdd" data-datable-era="[0,0,30]"  /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
-                             <label class="control-label">Any day in the 1980s</label>
-                             <input id="input10" type="text" class="form-control" data-datable="ddmmyyyy" data-datable-era="-10,0,0" data-datable-start="1989,12,31"  />
+                             <label class="control-label">Between 10 and 20 years ago</label>
+                             <input id="input10" type="text" class="form-control" data-datable="ddmmyyyy" data-datable-era="[-10,0,0]" data-datable-era2="[-20,0,0]"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-era="-10,0,0" data-datable-start="1989,12,31" /&gt;
+                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-era="[-10,0,0]" data-datable-era2="[-20,0,0]" /&gt;
                              </code></p>                      
                          </div>  
 
@@ -197,7 +209,7 @@
                 </code></p><p><code>    
                     &lt;script&gt; $('input[data-datable]').datable();&lt;/script&gt;   
                 </code></p>
-                <p>That's all! Your options are handled through custom data attributes in each element.</p>
+                <p>That's all! Your options are handled through custom data attributes in each element. View the source of this page!</p>
                 
             </div>  
         </div>
