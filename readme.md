@@ -11,7 +11,7 @@ After downloading datable, just include the file right above the closing `<body>
 
 `<script> $('input[data-datable]').datable();</script>`
 
-That's all! Your options are handled through custom data attributes in each element. View the source of this page!
+That's all! Your options are handled through custom data attributes in each element.
 
 
 ## Attributes
