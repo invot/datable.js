@@ -1,5 +1,5 @@
 // datable.js by invot
-// version 0.3.2
+// version 0.4.2
 
 /* global $, jQuery */
 
@@ -17,6 +17,18 @@ $.fn.datable = function() {
         }
     }
 
+    function getEraDate(e) {
+        if ($.isArray(e)){
+            var st = new Date();
+            day = parseInt(st.getDate()) + parseInt(e[2]),
+            month = parseInt(st.getMonth()) + parseInt(e[1]),
+            year = parseInt(st.getFullYear()) + parseInt(e[0]); 
+            return new Date(year,month,day);   
+        } else {
+            return new Date(e);
+        }
+    }
+
     function charPos(sub,str){
         var a=[],i=-1;
         while((i=str.indexOf(sub,i+1)) >= 0) a.push(i);
@@ -27,12 +39,15 @@ $.fn.datable = function() {
         // CORE FUNCTIONALITY
         var t = $(this),
             val  = t.data('datable'),
-            sta = t.data('datable-start'),
+            er2 = t.data('datable-era2'),
             era = t.data('datable-era'),
             vrr = val.match(/.{2}/g),
             nrr = [],
             pd = t.data('datable-divider'),
-            div = (pd) ? pd : " / ";     
+            div = (pd) ? pd : " / ",
+            e1 = (era) ? getEraDate(era) : null, 
+            e2 = (er2) ? getEraDate(er2) : new Date();   
+
         $.each(vrr, function(i, el){
             if($.inArray(el, nrr) === -1) {
                 nrr.push(el); 
@@ -41,6 +56,7 @@ $.fn.datable = function() {
                 nrr.push(el+el); 
             }
         });  
+
         var phld = nrr.join(div).toUpperCase(); 
         t.attr('maxlength', phld.length);
         t.attr('placeholder', phld).val();
@@ -67,18 +83,10 @@ $.fn.datable = function() {
                    } 
             } 
         });  
-        if(era) {
-            var st,er;
-            sta ? st = new Date(sta) : st = new Date();
-            var e = era.split(','),
-                day = parseInt(st.getDate()) + parseInt(e[2]),
-                month = parseInt(st.getMonth()) + parseInt(e[1]),
-                year = parseInt(st.getFullYear()) + parseInt(e[0]);  
-            er = new Date(year,month,day);   
-        }
 
         // BOOTSTRAP-FRIENDLY VALIDATION 
         t.on('blur', function(){
+
             var dat = t.val().split(div),
                 arr = toObject(nrr,dat),
                 err = 0;
@@ -95,11 +103,9 @@ $.fn.datable = function() {
 
             if ( isDate(arr.yyyy,arr.mm,arr.dd) ) {
                 var tv = new Date(arr.yyyy, arr.mm, arr.dd);
-                if(era) { 
-                    if (tv > st && tv >= er) {
+                if(e1) { 
+                    if ( (tv < e1 && tv < e2) || (tv > e1 && tv > e2) ) {
                         err++;
-                    } else if (tv < st && tv <= er) {
-                        err++;   
                     }
                 }
             } else {
