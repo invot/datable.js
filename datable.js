@@ -21,7 +21,7 @@ $.fn.datable = function() {
         if ($.isArray(e)){
             var st = new Date();
             day = parseInt(st.getDate()) + parseInt(e[2]),
-            month = parseInt(st.getMonth()) + parseInt(e[1]),
+            month = parseInt(st.getMonth()+1) + parseInt(e[1]),
             year = parseInt(st.getFullYear()) + parseInt(e[0]); 
             return new Date(year,month,day);   
         } else {
