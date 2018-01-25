@@ -80,7 +80,7 @@
                 <h1>Datable</h1><a name="demo"></a>
                 <p>A lightweight, customizable, bootstraps-friendly jQuery plugin to properly format dates in inputs and verify that the date is valid.</p>
 
-                <div class="alert alert-danger" role="alert">Version 0.4.0 and beyond handles era validation differently than before. if your script has broken while updating datable.js, the examples below will explain how to impliment the new, and much better, era validation techniques.</div>
+                <div class="alert alert-danger" role="alert">Version 0.5.0 and beyond will not work with any previous version. Every decimal release will be feature-breaking until version 1.0 is released. With that said, this new version is faster and easier to use, so give it a try!</div>
 
             </div>
             <hr />
@@ -92,63 +92,77 @@
                 <h3>Demo</h3>
                 
                 <form id="theForm">
+				 <fieldset id="full-date">
+                        <legend>Full Date</legend>
+						<div class="row">
+							<div class="col-lg-6 control-group">
+                             <label class="control-label">Default Settings</label>
+                             <input id="input0" type="datable" class="form-control" />
+                             <p><code>
+                                 &lt;input type="datable" /&gt;
+                             </code></p>
+							</div>  
+							<div class="col-lg-6 control-group">
+                             <br />
+							 <p>By simply adding <code>type="datable"</code> to any input field, datable.js will transform your plain ol' input field into a datable input!</p>
+							</div>    
+						</div>	
+						<div class="row">						
+                          <div class="col-lg-6 control-group">
+                             <label class="control-label">2-digit year (US)</label>
+                             <input id="input3" type="datable" class="form-control" data-datable="mmddyy" />
+                             <p><code>
+                                 &lt;input type="datable" data-datable="mmddyy" /&gt;
+                             </code></p>
+                         </div>  
+                         <div class="col-lg-6 control-group">
+                             <label class="control-label">Standard (UK)</label>
+                             <input id="input4" type="datable" class="form-control" data-datable="ddmmyyyy" />
+                             <p><code>
+                                 &lt;input type="datable" data-datable="ddmmyyyy" /&gt;
+                             </code></p>
+                         </div> 
+						</div>
+                    </fieldset>
+					
                     <fieldset id="month-year">
                         <legend>Month & Year</legend>
                          
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Standard (US)</label>
                              <div class="controls">
-                                <input id="input1" type="text" class="form-control" data-datable="mmyyyy" />
+                                <input id="input1" type="datable" class="form-control" data-datable="mmyyyy" />
                              </div>
                              <p><code>
-                                 &lt;input type="text" data-datable="mmyyyy" /&gt;
+                                 &lt;input type="datable" data-datable="mmyyyy" /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
                              <label class="control-label">2-digit (UK)</label>
                              <div class="controls">
-                                <input id="input2" type="text" class="form-control" data-datable="yymm" />
+                                <input id="input2" type="datable" class="form-control" data-datable="yymm" />
                              </div>
                              <p><code>
-                                 &lt;input type="text" data-datable="yymm" /&gt;
+                                 &lt;input type="datable" data-datable="yymm" /&gt;
                              </code></p>
                          </div>     
                          
-                    </fieldset>    
-                    <fieldset id="full-date">
-                        <legend>Full Date</legend>
-                        
-                          <div class="col-lg-6 control-group">
-                             <label class="control-label">2-digit year (US)</label>
-                             <input id="input3" type="text" class="form-control" data-datable="mmddyy" />
-                             <p><code>
-                                 &lt;input type="text" data-datable="mmddyy" /&gt;
-                             </code></p>
-                         </div>  
-                         <div class="col-lg-6 control-group">
-                             <label class="control-label">Standard (UK)</label>
-                             <input id="input4" type="text" class="form-control" data-datable="ddmmyyyy" />
-                             <p><code>
-                                 &lt;input type="text" data-datable="ddmmyyyy" /&gt;
-                             </code></p>
-                         </div> 
-                
-                    </fieldset>
+                    </fieldset>   
                     <fieldset id="alternate">
                         <legend>Alternate Dividers</legend>
                          
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Standard (US) with spaced dash</label>
-                             <input id="input5" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider=" - "  />
+                             <input id="input5" type="datable" class="form-control" data-datable="mmddyyyy"  data-datable-divider=" - "  />
                              <p><code>
-                                 &lt;input type="text" data-datable="mmddyyyy"  data-datable-divider=" - "  /&gt;
+                                 &lt;input type="datable" data-datable="mmddyyyy"  data-datable-divider=" - "  /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Standard (UK) with dash</label>
-                             <input id="input6" type="text" class="form-control" data-datable="ddmmyyyy"  data-datable-divider="-"  />
+                             <input id="input6" type="datable" class="form-control" data-datable="ddmmyyyy"  data-datable-divider="-"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="ddmmyyyy"  data-datable-divider="-"  /&gt;
+                                 &lt;input type="datable" data-datable="ddmmyyyy"  data-datable-divider="-"  /&gt;
                              </code></p>                      
                          </div>  
 
@@ -165,16 +179,16 @@
                          
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Between today and January 1, 2000</label>
-                             <input id="input7" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="2000,1,1"  />
+                             <input id="input7" type="datable" class="form-control"  data-datable-era="2000,1,1"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="2000,1,1"  /&gt;
+                                 &lt;input type="datable" data-datable-era="2000,1,1"  /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Any day in the 1990s</label>
-                             <input id="input8" type="text" class="form-control" data-datable="mmddyyyy"  data-datable-divider="/" data-datable-era="1999,12,31" data-datable-era2="1990,1,1"  />
+                             <input id="input8" type="datable" class="form-control"  data-datable-divider="/" data-datable-era="1999,12,31" data-datable-era2="1990,1,1"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-divider="/" data-datable-era="1999,12,31" data-datable-era2="1990,1,1" /&gt;
+                                 &lt;input type="datable" data-datable-divider="/" data-datable-era="1999,12,31" data-datable-era2="1990,1,1" /&gt;
                              </code></p>                      
                          </div>  
                          
@@ -182,34 +196,68 @@
                          
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Within the next 30 days</label>
-                             <input id="input9" type="text" class="form-control" type="text" data-datable="yyyymmdd" data-datable-era="[0,0,30]"  />
+                             <input id="input9" type="datable" class="form-control" type="datable" data-datable="yyyymmdd" data-datable-era="[0,0,30]"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="yyyymmdd" data-datable-era="[0,0,30]"  /&gt;
+                                 &lt;input type="datable" data-datable="yyyymmdd" data-datable-era="[0,0,30]"  /&gt;
                              </code></p>
                          </div>      
                          <div class="col-lg-6 control-group">
                              <label class="control-label">Between 10 and 20 years ago</label>
-                             <input id="input10" type="text" class="form-control" data-datable="ddmmyyyy" data-datable-era="[-10,0,0]" data-datable-era2="[-20,0,0]"  />
+                             <input id="input10" type="datable" class="form-control" data-datable="ddmmyyyy" data-datable-era="[-10,0,0]" data-datable-era2="[-20,0,0]"  />
                              <p><code>
-                                 &lt;input type="text" data-datable="ddmmyyyy" data-datable-era="[-10,0,0]" data-datable-era2="[-20,0,0]" /&gt;
+                                 &lt;input type="datable" data-datable="ddmmyyyy" data-datable-era="[-10,0,0]" data-datable-era2="[-20,0,0]" /&gt;
                              </code></p>                      
                          </div>  
 
                     </fieldset>    
                 </form>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<legend>Future Features</legend>
+						<ul>
+							<li>More default values for era validation</li>
+							<li>Auto-populating dates into the fields</li>
+							<li>Moment.js support</li>
+							<li>Cross-field validation (is one date before or after anoter, etc.)</li>
+						</ul>	
+					</div>
+				</div>
+				
             </div>
             
         </div>
         <div class="row">
             <div class="col-lg-12">
                 <h3>Install</h3><a name="install"></a>
-                <p>After downloading datable, just include the file right above the closing <code>&lt;body&gt;</code> tag and then initialize the function.</p>
+                <p>After downloading datable, just include the file right above the closing <code>&lt;body&gt;</code> tag in your HTML.</p>
                 <p><code>
                     &lt;script type="text/javascript" src="datable.min.js"&gt;&lt;/script&gt;
-                </code></p><p><code>    
-                    &lt;script&gt; $('input[data-datable]').datable();&lt;/script&gt;   
                 </code></p>
-                <p>That's all! Your options are handled through custom data attributes in each element. View the source of this page!</p>
+				
+				 <p>Then initialize the plugin:</p>
+				
+				<p><code>    
+                    $.datable('init');
+                </code></p>
+                <p>That's all!</p>
+				
+				<p>&nbsp;</p>
+				
+				<p>If you want to clear ALL the datable fields:</p>
+				
+				<p><code>    
+                    $.datable('clearAll'); 
+                </code></p>		
+				
+				<p>&nbsp;</p>
+				
+				<p>And if you want to deinitialize the plugin (this does not clear the values):</p>
+				
+				<p><code>    
+                    $.datable('deinit'); 
+                </code></p>
+				
                 
             </div>  
         </div>
@@ -222,9 +270,6 @@
     </div>
     <!-- /.container -->
     <script type="text/javascript" src="datable.js"></script>
-    <script>
-        $('input[data-datable]').datable();
-    </script>    
-
+	<script>$.datable();</script>	
 </body>
 </html>
