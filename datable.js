@@ -1,15 +1,15 @@
 // datable.js by invot
-// version 0.4.2
+// version 0.5.0
 
 /* global $, jQuery */
 
 (function ( $ ) {    
-$.fn.datable = function() {
+$.datable = function(x){
 
     function toObject(t,n){for(var r={},e=0;e<t.length;e++)r[t[e]]=n[e];return r;}
 
     function isDate(y, m, d) {
-        var a = new Date(y, m-1, d);
+        let a = new Date(y, m-1, d);
         if (a.getFullYear() == y && a.getMonth() == m-1 && a.getDate() == d) { 
             return true; 
         } else {
@@ -19,7 +19,7 @@ $.fn.datable = function() {
 
     function getEraDate(e) {
         if ($.isArray(e)){
-            var st = new Date();
+            let st = new Date();
             day = parseInt(st.getDate()) + parseInt(e[2]),
             month = parseInt(st.getMonth()+1) + parseInt(e[1]),
             year = parseInt(st.getFullYear()) + parseInt(e[0]); 
@@ -30,15 +30,28 @@ $.fn.datable = function() {
     }
 
     function charPos(sub,str){
-        var a=[],i=-1;
+        let a=[],i=-1;
         while((i=str.indexOf(sub,i+1)) >= 0) a.push(i);
         return a;
     }
-
-    $(this).each(function(){
+	
+  	let deinit = function() {
+		$('input[type=datable]').each(function(){
+			$(this).attr('placeholder', '').attr('maxlength','').unbind('keydown');
+		});
+	}
+	
+	let clearAll = function() {
+		$('input[type=datable]').each(function(){
+			$(this).val('');
+		});
+	}
+	 
+	let init = function() {
+		$('input[type=datable]').each(function(){
         // CORE FUNCTIONALITY
-        var t = $(this),
-            val  = t.data('datable'),
+        let t = $(this),
+            val  = t.data('datable') ? t.data('datable') : 'mmddyyyy',
             er2 = t.data('datable-era2'),
             era = t.data('datable-era'),
             vrr = val.match(/.{2}/g),
@@ -57,10 +70,10 @@ $.fn.datable = function() {
             }
         });  
 
-        var phld = nrr.join(div).toUpperCase(); 
+        let phld = nrr.join(div).toUpperCase(); 
         t.attr('maxlength', phld.length);
         t.attr('placeholder', phld).val();
-        t.on('keydown', function(e){
+        t.bind('keydown', function(e){
             if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && $.inArray(e.keyCode, [46, 8, 9, 27, 13, 37, 39]) === -1) { e.preventDefault(); }
             if(e.keyCode == 8) {
                 // if backspace delete divider in one keystroke
@@ -72,7 +85,7 @@ $.fn.datable = function() {
                 // do nothing when using arrow keys
             } else {    
                 // default action :)
-                var s = this.selectionStart,
+                let s = this.selectionStart,
                     l = t.val().length,
                     ps = charPos(div,phld),
                     sg = t.val().substring(s,parseInt(s)+div.length);
@@ -87,7 +100,7 @@ $.fn.datable = function() {
         // BOOTSTRAP-FRIENDLY VALIDATION 
         t.on('blur', function(){
 
-            var dat = t.val().split(div),
+            let dat = t.val().split(div),
                 arr = toObject(nrr,dat),
                 err = 0;
             if (arr.yy) {
@@ -102,7 +115,7 @@ $.fn.datable = function() {
             }
 
             if ( isDate(arr.yyyy,arr.mm,arr.dd) ) {
-                var tv = new Date(arr.yyyy, arr.mm, arr.dd);
+                let tv = new Date(arr.yyyy, arr.mm, arr.dd);
                 if(e1) { 
                     if ( (tv < e1 && tv < e2) || (tv > e1 && tv > e2) ) {
                         err++;
@@ -119,5 +132,12 @@ $.fn.datable = function() {
             }
         }); 
     });
+	}
+	
+	switch (x) {
+		case 'deinit': deinit();break;
+		case 'clearAll': clearAll();break;
+		case 'init': default: init();break;
+	}
 };
 }( jQuery ));
